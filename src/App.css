@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: #F0F8FF
 }
 
 .Magic-circle {
@@ -18,6 +19,7 @@
 }
 
 .Quill {
+  background-color: white;
   display:block;
   margin: 25px 50px 25px 50px;
   border: 20px solid gray;
@@ -25,6 +27,9 @@
 }
 
 .CalendarDiv {
+  display: block;
+  border: 20px solid gray;
+  border-style: double;
   margin-top: 75px;
   margin-bottom: 75px;
   margin-left: 50px;

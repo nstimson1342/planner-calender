@@ -1,26 +1,24 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const dateFormat = require('dateformat')
 
 const EntrySchema = new Schema({
+  type: String,
   title: String,
   body: String,
-  user: {type: Schema.Types.ObjectId, ref: 'user'},
-  createdAt: String,
-  modifiedAt: String
+  createdAt: Date,
+  modifiedAt: Date
+
 })
 
 EntrySchema.pre('save', function(next) {
-  let date = new Date()
   if (this.isNew) {
-    this.createdAt = dateFormat(date, "dddd, mmmm dS, yyyy")
+    this.createAt = new Date()
   } else {
-    this.modifiedAt = dateFormat(date, "dddd, mmmm dS, yyyy")
+    this.modifiedAt = new Date()
   }
   return next()
 })
 
 module.exports = {
    entry: mongoose.model('entry', EntrySchema),
-
  }
