@@ -10,6 +10,7 @@ class MyComponent extends React.Component {
 
   handleChange(value) {
     this.setState({ text: value })
+    this.props.onInputChange(value)
   }
 
   render() {

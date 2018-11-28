@@ -8,6 +8,12 @@ const Entry = require('./model.js').entry;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 var port = process.env.PORT || 8080;
 
 var router = express.Router();
@@ -27,15 +33,14 @@ router.route('/entries')
   .post(function(req, res) {
 
     var entry = new Entry();
-    entry.name = req.body.name;
+    entry.body = req.body.newEntry;
 
-    entry.save(function(err) {
-    if (err)
-      res.send(err);
-
-      res.json({ message: 'Entry created!' });
+    entry.save(function(err, savedEntry, c) {
+      if (err) res.send(err);
+      res.json({ message: 'Entry created!', savedEntry });
     })
   })
+  
   .get((req, res) => {
   Entry.find((err, entries) => {
     if(err){
@@ -54,6 +59,17 @@ router.route('/entries/:entry_id')
         res.send(err);
       } else {
         res.json(entry)
+      }
+    })
+  })
+
+  .delete((req, res) => {
+    Entry.findById(req.params.entry_id, (err, entry) => {
+      if(err) {
+        res.send(err);
+      } else {
+        entry.remove()
+        res.json({ message: 'Entry deleted!' });
       }
     })
   })

@@ -15,31 +15,37 @@ import axios from 'axios';
 class App extends Component {
   state = {
     panelExpanded: false,
-    entryHandler: undefined,
-    entry: ''
+    entry: '',
+    data: []
 };
 
   componentDidMount() {
-    fetch('http://localhost:8080/api/entries')
-    
+    axios.get('http://localhost:8080/api/entries')
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+    console.log(error);
+    });
+  }
+
+  onInputChange = (value) => {
+    this.setState({
+      entry: value
+    })
   }
 
   entryHandler() {
-    console.log(this.state.data)
-    const input = {
-      body: this.state.value,
-      title: this.state.date
-    }
-    fetch('http://localhost:8080/api/entries', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(input),
-      title: JSON.stringify(input)
+    axios({
+      method: 'post',
+      url: 'http://localhost:8080/api/entries',
+      data: {
+        newEntry: this.state.entry
+      }
     })
-    .then(res => res.json())
-    .then(data => console.log(data))
+    .then(res => {
+      console.log('response', res)
+    })
   }
 
   togglePanel = () => {
@@ -67,7 +73,7 @@ class App extends Component {
             </div>
               <h2>What's On Your Mind Today?</h2>
             <div className='Quill'>
-              <MyComponent />
+              <MyComponent onInputChange={this.onInputChange}/>
               <Button onClick={() => this.entryHandler()}>
                   <p>Button</p>
               </Button>
@@ -78,6 +84,7 @@ class App extends Component {
           <IconButton className='Magic-circle' href='http://www.google.com'>
             <img src={ MagicCircle} style={{height: 400, width: 400 }} alt=''/>
           </IconButton>
+          <h2>It can take you anywhere you can possibly imagine, and beyond!</h2>
       </div>
     );
   }
