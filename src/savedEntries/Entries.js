@@ -9,17 +9,13 @@ class Entries extends Component {
     }
   }
 
-  onChange = () => {
-    this.setState({
-      entries: axios.get('http://localhost:8080/api/entries')
-    })
-  }
+
 
   render() {
     return(
       <div>
         <ol>
-          <li onChange={this.onChange}/>
+          <li />
         </ol>
       </div>
     )

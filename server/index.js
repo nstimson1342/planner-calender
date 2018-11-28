@@ -31,16 +31,17 @@ router
 
 router.route('/entries')
   .post(function(req, res) {
-
+    console.log(req.body)
     var entry = new Entry();
-    entry.body = req.body.newEntry;
+    entry.body = req.body.body;
+    entry.title = req.body.title;
 
     entry.save(function(err, savedEntry, c) {
       if (err) res.send(err);
       res.json({ message: 'Entry created!', savedEntry });
     })
   })
-  
+
   .get((req, res) => {
   Entry.find((err, entries) => {
     if(err){

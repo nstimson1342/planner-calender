@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Calendar from 'react-calendar';
-import MyComponent from './Quill/Quill.js';
+import Quill from './Quill/Quill.js';
 import 'react-quill/dist/quill.snow.css';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
@@ -16,7 +16,8 @@ class App extends Component {
   state = {
     panelExpanded: false,
     entry: '',
-    data: []
+    data: [],
+    title: ''
 };
 
   componentDidMount() {
@@ -35,16 +36,27 @@ class App extends Component {
     })
   }
 
-  entryHandler() {
+  onTitleChange = (e) => {
+    this.setState({
+      title: e.currentTarget.value
+    })
+  }
+
+  entryHandler = () => {
     axios({
       method: 'post',
       url: 'http://localhost:8080/api/entries',
       data: {
-        newEntry: this.state.entry
+        body: this.state.entry,
+        title: this.state.title
       }
     })
-    .then(res => {
+    .then((res) => {
       console.log('response', res)
+      this.setState({
+        entry: '',
+        title: ''
+      })
     })
   }
 
@@ -72,8 +84,10 @@ class App extends Component {
               <CalendarApp />
             </div>
               <h2>What's On Your Mind Today?</h2>
+              <label htmlFor="title">Title</label>
+              <input onChange={this.onTitleChange} value={this.state.title} type="text" id="title" />
             <div className='Quill'>
-              <MyComponent onInputChange={this.onInputChange}/>
+              <Quill entry={this.state.entry} onInputChange={this.onInputChange}/>
               <Button onClick={() => this.entryHandler()}>
                   <p>Button</p>
               </Button>
