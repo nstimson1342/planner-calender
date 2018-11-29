@@ -11,13 +11,17 @@ import IconButton from '@material-ui/core/IconButton';
 import MagicCircle from './magic-circle.png';
 import CalendarApp from './Calendar/Calendar.js';
 import axios from 'axios';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Entries from './savedEntries/Entries.js';
 
 class App extends Component {
   state = {
     panelExpanded: false,
     entry: '',
     data: [],
-    title: ''
+    title: '',
+    anchorEl: null
 };
 
   componentDidMount() {
@@ -41,6 +45,14 @@ class App extends Component {
       title: e.currentTarget.value
     })
   }
+
+  handleClose = () => {
+   this.setState({ anchorEl: null });
+ };
+
+ handleClick = event => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
 
   entryHandler = () => {
     axios({
@@ -67,6 +79,8 @@ class App extends Component {
   }
 
   render() {
+    const { anchorEl } = this.state;
+
     return (
       <div className='App'>
         <AppBar className='AppBar'>
@@ -99,6 +113,18 @@ class App extends Component {
             <img src={ MagicCircle} style={{height: 400, width: 400 }} alt=''/>
           </IconButton>
           <h2>It can take you anywhere you can possibly imagine, and beyond!</h2>
+          <Button onClick={this.handleClick}>
+            Saved-Entries
+          </Button>
+          <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={this.handleClose}
+            >
+              <MenuItem onClick={this.handleClose}>Entries</MenuItem>
+          </Menu>
+          <h2>Observe, Act, Reflect, Adjust, Respond: (Repeat)</h2>
+          <p>There are apparent patterns to the climates of awareness within any given mindscape, or framework of perception, and one can learn to better anticipate the procession of these seasons through habitual observation and reflection.  When these patterns can be accounted for, relevant preparations can be made, allowing for a more graceful and harmonious transition from one state to another.</p>
       </div>
     );
   }
