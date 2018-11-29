@@ -15,7 +15,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Entries from './savedEntries/Entries.js';
 
-class App extends Component {
+class Homepage extends Component {
   state = {
     panelExpanded: false,
     entry: '',
@@ -130,4 +130,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Homepage;
