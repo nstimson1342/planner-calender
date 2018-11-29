@@ -93,38 +93,38 @@ class Homepage extends Component {
             </ExpansionPanel>
           </Button>
         </AppBar>
-            <div className='CalendarDiv'>
-              <h2>A Modern World Timescape, One Day At A Time</h2>
-              <CalendarApp />
-            </div>
-              <h2>What's On Your Mind Today?</h2>
-              <label htmlFor="title">Title</label>
-              <input onChange={this.onTitleChange} value={this.state.title} type="text" id="title" />
-            <div className='Quill'>
-              <Quill entry={this.state.entry} onInputChange={this.onInputChange}/>
-              <Button onClick={() => this.entryHandler()}>
-                  <p>Button</p>
-              </Button>
-            </div>
-            <div>
-              <h2>For Further Assistance, Enter Rabit-hole Below</h2>
-            </div>
-          <IconButton className='Magic-circle' href='http://www.google.com'>
-            <img src={ MagicCircle} style={{height: 400, width: 400 }} alt=''/>
-          </IconButton>
-          <h2>It can take you anywhere you can possibly imagine, and beyond!</h2>
-          <Button onClick={this.handleClick}>
-            Saved-Entries
+        <div className='CalendarDiv'>
+          <h2>A Modern World Timescape, One Day At A Time</h2>
+          <CalendarApp />
+        </div>
+          <h2>What's On Your Mind Today?</h2>
+          <label htmlFor="title">Title</label>
+          <input onChange={this.onTitleChange} value={this.state.title} type="text" id="title" />
+        <div className='Quill'>
+          <Quill entry={this.state.entry} onInputChange={this.onInputChange}/>
+          <Button onClick={() => this.entryHandler()}>
+              <p>Button</p>
           </Button>
-          <Menu
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={this.handleClose}
-            >
-              <MenuItem onClick={this.handleClose}>Entries</MenuItem>
-          </Menu>
-          <h2>Observe, Act, Reflect, Adjust, Respond: (Repeat)</h2>
-          <p>There are apparent patterns to the climates of awareness within any given mindscape, or framework of perception, and one can learn to better anticipate the procession of these seasons through habitual observation and reflection.  When these patterns can be accounted for, relevant preparations can be made, allowing for a more graceful and harmonious transition from one state to another.</p>
+        </div>
+        <div>
+          <h2>For Further Assistance, Enter Rabit-hole Below</h2>
+        </div>
+        <IconButton className='Magic-circle' href='http://www.google.com'>
+          <img src={ MagicCircle} style={{height: 400, width: 400 }} alt=''/>
+        </IconButton>
+        <h2>It can take you anywhere you can possibly imagine, and beyond!</h2>
+        <Button onClick={this.handleClick}>
+          Saved-Entries
+        </Button>
+        <Menu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={this.handleClose}
+          >
+            <MenuItem onClick={this.handleClose}>Entries</MenuItem>
+        </Menu>
+        <h2>Observe, Act, Reflect, Adjust, Respond: (Repeat)</h2>
+        <p>There are apparent patterns to the climates of awareness within any given mindscape, or framework of perception, and one can learn to better anticipate the procession of these seasons through habitual observation and reflection.  When these patterns can be accounted for, relevant preparations can be made, allowing for a more graceful and harmonious transition from one state to another.</p>
       </div>
     );
   }
