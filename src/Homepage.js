@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import './App.css';
 import Calendar from 'react-calendar';
 import Quill from './Quill/Quill.js';
@@ -121,7 +122,9 @@ class Homepage extends Component {
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
           >
-            <MenuItem onClick={this.handleClose}>Entries</MenuItem>
+            <MenuItem>
+              <Link to='/entries'>Entries</Link>
+            </MenuItem>
         </Menu>
         <h2>Observe, Act, Reflect, Adjust, Respond: (Repeat)</h2>
         <p>There are apparent patterns to the climates of awareness within any given mindscape, or framework of perception, and one can learn to better anticipate the procession of these seasons through habitual observation and reflection.  When these patterns can be accounted for, relevant preparations can be made, allowing for a more graceful and harmonious transition from one state to another.</p>
