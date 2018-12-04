@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/myapp', {useNewUrlParser: true});
 const Entry = require('./model.js').entry;
 
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -13,6 +14,10 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+
+if (process.env.NODE_ENV) {
+  app.use(express.static('build'))
+}
 
 var port = process.env.PORT || 8080;
 

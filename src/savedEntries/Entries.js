@@ -11,7 +11,11 @@ class Entries extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:8080/api/entries')
+    let domain = "https://daily-planner1.herokuapp.com"
+    if(process.env.NODE_ENV === 'developement') {
+      domain = 'http://localhost:8080'
+    }
+    axios.get(domain + '/api/entries')
     .then((response) => {
       console.log(response);
       this.setState({

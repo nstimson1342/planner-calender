@@ -46,9 +46,13 @@ class Homepage extends Component {
   };
 
   entryHandler = () => {
+    let domain = "https://daily-planner1.herokuapp.com"
+    if(process.env.NODE_ENV === 'developement') {
+      domain = 'http://localhost:8080'
+    }
     axios({
       method: 'post',
-      url: 'http://localhost:8080/api/entries',
+      url: domain + '/api/entries',
       data: {
         body: this.state.entry,
         title: this.state.title

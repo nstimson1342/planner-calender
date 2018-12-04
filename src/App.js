@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Route , Switch } from 'react-router-dom';
 import Homepage from './Homepage'
 import Entries from './savedEntries/Entries';
-import axios from 'axios';
 
 class App extends Component {
 
