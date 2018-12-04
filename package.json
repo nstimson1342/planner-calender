@@ -9,6 +9,7 @@
     "@material-ui/core": "^3.5.1",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
+    "event-stream": "^4.0.1",
     "express": "^4.16.4",
     "moment": "^2.22.2",
     "nodemon": "^1.18.6",
